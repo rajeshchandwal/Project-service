@@ -2,14 +2,21 @@ package com.test.pm.dto;
 
 import com.test.pm.entity.Instructor;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class CoursesDto {
     private int id;
 
     private String title;
+    private String name;
+
+    private int noOfStudent;
+    private String category;
+    private int reviewScore;
     private Instructor instructor;
 
     public int getId() {

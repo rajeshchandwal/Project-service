@@ -232,8 +232,8 @@ public class SampleService {
           numbers.stream()
                 .filter(getIntegerPredicate());
 
-        List<CourseDto> courseDtosList = new ArrayList<>();
-        CourseDto courseDtos = new CourseDto();
+        List<CoursesDto> courseDtosList = new ArrayList<>();
+        CoursesDto courseDtos = new CoursesDto();
         courseDtos.setName("spring");
         courseDtos.setNoOfStudent(98);
         courseDtos.setCategory("framework");
@@ -255,32 +255,32 @@ public class SampleService {
                 .anyMatch(getCourseDtoPredicate());
 
         //comparator
-        List<CourseDto> courseDtoListIncreasingOrder = courseDtosList.stream()
-                .sorted(Comparator.comparing(CourseDto::getName))
+        List<CoursesDto> courseDtoListIncreasingOrder = courseDtosList.stream()
+                .sorted(Comparator.comparing(CoursesDto::getName))
                 .collect(Collectors.toList());
 
-        List<CourseDto> courseDtoListdecreasingOrder = courseDtosList.stream()
-                .sorted(Comparator.comparing(CourseDto::getNoOfStudent).reversed())
+        List<CoursesDto> courseDtoListdecreasingOrder = courseDtosList.stream()
+                .sorted(Comparator.comparing(CoursesDto::getNoOfStudent).reversed())
                 .collect(Collectors.toList());
 
-        List<CourseDto> courseDtoListComparingByNoofStuAndReview = courseDtosList.stream()
+        List<CoursesDto> courseDtoListComparingByNoofStuAndReview = courseDtosList.stream()
                 .sorted(Comparator
-                        .comparing(CourseDto::getNoOfStudent)
-                        .thenComparing(CourseDto::getReviewScore).reversed())
+                        .comparing(CoursesDto::getNoOfStudent)
+                        .thenComparing(CoursesDto::getReviewScore).reversed())
                 .collect(Collectors.toList());
 
         //skip, limit, takewhile, dropwhile
         courseDtosList.stream()
                 .sorted(Comparator
-                        .comparing(CourseDto::getNoOfStudent)
-                        .thenComparing(CourseDto::getReviewScore).reversed())
+                        .comparing(CoursesDto::getNoOfStudent)
+                        .thenComparing(CoursesDto::getReviewScore).reversed())
                 .limit(5)
                 .collect(Collectors.toList());
 
         courseDtosList.stream()
                 .sorted(Comparator
-                        .comparing(CourseDto::getNoOfStudent)
-                        .thenComparing(CourseDto::getReviewScore).reversed())
+                        .comparing(CoursesDto::getNoOfStudent)
+                        .thenComparing(CoursesDto::getReviewScore).reversed())
                 .skip(3)
                 .collect(Collectors.toList());
 
@@ -293,22 +293,22 @@ public class SampleService {
                 .collect(Collectors.toList());
         //grouping
         courseDtosList.stream()
-                .collect(Collectors.groupingBy(CourseDto::getCategory,Collectors.counting()))
+                .collect(Collectors.groupingBy(CoursesDto::getCategory,Collectors.counting()))
                 .entrySet().stream()
                 .filter(category->category.getValue()>24)
                 .collect(Collectors.toList());
 
         courseDtosList.stream()
-                .collect(Collectors.groupingBy(CourseDto::getCategory));
+                .collect(Collectors.groupingBy(CoursesDto::getCategory));
 
         courseDtosList.stream()
                 .collect(Collectors
-                        .groupingBy(CourseDto::getCategory,Collectors
-                                .maxBy(Comparator.comparing(CourseDto::getReviewScore))));
+                        .groupingBy(CoursesDto::getCategory,Collectors
+                                .maxBy(Comparator.comparing(CoursesDto::getReviewScore))));
 
         courseDtosList.stream()
                 .collect(Collectors
-                        .groupingBy(CourseDto::getNoOfStudent, Collectors.mapping(CourseDto::getName, Collectors.toList())));
+                        .groupingBy(CoursesDto::getNoOfStudent, Collectors.mapping(CoursesDto::getName, Collectors.toList())));
 
 
 
@@ -339,7 +339,7 @@ public class SampleService {
         modifyableCourses.removeIf(course ->course.length()<6);
     }
 
-    private static Predicate<CourseDto> getCourseDtoPredicate() {
+    private static Predicate<CoursesDto> getCourseDtoPredicate() {
         return courseDto -> courseDto.getReviewScore() > 50;
     }
 
