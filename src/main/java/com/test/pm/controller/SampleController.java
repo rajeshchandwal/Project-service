@@ -97,5 +97,9 @@ public class SampleController {
     public List<Instructor> pagination(@PathVariable("name") String name) {
        return sampleService.pagination(name,1L,1);
     }
+    @GetMapping("/streams")
+    public void streams() {
+         sampleService.printAllNumberInListFunctional();
+    }
 
 }

@@ -161,8 +161,12 @@ public class SampleService {
     }
 
 
-    public void printAllNumberInListFunctional(List<Integer> numbers) {
-
+    public void printAllNumberInListFunctional() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(4);
+        numbers.add(8);
+        numbers.add(76);
         numbers.stream()
                 .filter(numb->numb%2 == 0) //lamda expression
                 .map(num->num*num)
